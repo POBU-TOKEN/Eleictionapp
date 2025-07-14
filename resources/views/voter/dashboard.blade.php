@@ -1,65 +1,92 @@
 @extends('layouts.app')
 
-@section('title', 'Minha Conta')
-    
+@section('title', 'Painel do Eleitor')
+
 @section('content')
 
+<section class="py-5 ">
+  <section class="pt-5 mt-5">
+    <div class="container-fluid">
+        <h2 class="mb-4">Painel do Eleitor</h2>
 
-<main class="min-vh-100 d-flex flex-column justify-content-between">
-    <section class="container w-100 flex-grow-1 border-bottom py-5 d-lg-flex">
-  
-    
-  
-      <!-- Option Cards -->
-      <section class="row w-100 px-4 pb-5">
-        <div class="col-lg-4 mb-3">
-          <div class="border shadow-sm p-4">
-            <div class="d-flex justify-content-between mb-3">
-              <p class="fw-bold mb-0">Personal Profile</p>
-              <a class="text-sm text-primary" href="{{ route('users.edit', $user->id)}}">Edit</a>
-            </div>
-            <div>
-              <p>{{ $user->nome }}</p>
-              <p>{{ $user->email }}</p>
-              <p>20371</p>
-              
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-lg-4 mb-3">
-          <div class="border shadow-sm p-4">
-            <div class="d-flex justify-content-between mb-3">
-              <p class="fw-bold mb-0">Shipping Address</p>
-              <a class="text-sm text-primary" href="manage-address.html">Edit</a>
-            </div>
-            <div>
-              <p>{{ $user->nome }}</p>
-              <p>Belgrade, Serbia</p>
-              <p>20371</p>
-              
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-lg-4 mb-3">
-          <div class="border shadow-sm p-4">
-            <div class="d-flex justify-content-between mb-3">
-              <p class="fw-bold mb-0">Billing Address</p>
-              <a class="text-sm text-primary" href="#">Edit</a>
-            </div>
-            <div>
-              <p>{{ $user->nome }}</p>
-              <p>Belgrade, Serbia</p>
-              <p>20371</p>
-              
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- /Option Cards -->
-  
-    </section>
-  </main>
+        <div class="row g-4">
 
+            <!-- Cartão de Informações do Usuário -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('storage/' . auth()->user()->imagem) }}" class="rounded-circle mb-3" width="100" height="100" alt="Foto do usuário">
+                        <h5 class="card-title">{{ auth()->user()->name }}</h5>
+                        <p class="card-text text-muted mb-0">{{ auth()->user()->email }}</p>
+                        <span class="badge bg-success mt-2">Eleitor Ativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="col-md-8">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="text-muted">Enquetes disponíveis</h6>
+                                <h3 class="fw-bold">{{ $availablePolls ?? 5 }}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="text-muted">Votos registrados</h6>
+                                <h3 class="fw-bold">{{ $votesCast ?? 2 }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4 shadow-sm border-0">
+                    <div class="card-header bg-primary text-white">
+                        Próximas Enquetes
+                    </div>
+                    <div class="card-body">
+                        @forelse ($upcomingPolls ?? [] as $poll)
+                            <div class="mb-3">
+                                <h6 class="mb-1">{{ $poll['title'] }}</h6>
+                                <small class="text-muted">Início: {{ $poll['start_date'] }}</small>
+                            </div>
+                        @empty
+                            <p class="text-muted">Nenhuma enquete futura cadastrada.</p>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Ações rápidas -->
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <a href="{{ route('polls.index') }}" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-ui-checks-grid me-1"></i> Visualizar Enquetes
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary w-100">
+                    <i class="bi bi-person-circle me-1"></i> Editar Perfil
+                </a>
+            </div>
+            <div class="col-md-4">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                        <i class="bi bi-box-arrow-right me-1"></i> Sair
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+</section>
 @endsection

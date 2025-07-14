@@ -5,7 +5,7 @@
 @section('content')
      <!-- Hero Section -->
         <section id="hero" class="hero section dark-background">
-            <img src="{{ asset('assets/img/hero-bg-2.jpg') }}" alt="" class="hero-bg">
+            <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
 
             <div class="container">
                 <div class="row gy-4 justify-content-between">
