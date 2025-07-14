@@ -5,38 +5,43 @@
 </p>
 
 <h1 align="center">🗳️ EleictionApp</h1>
-<p align="center">Um sistema simples e seguro de enquetes online com autenticação separada para Administradores e Eleitores.</p>
+<p align="center">Um sistema moderno de enquetes online com autenticação separada para Administradores e Eleitores.</p>
 
 ---
 
 ## 🚀 Sobre o Projeto
 
-**EleictionApp** é um sistema de enquetes online construído com [Laravel](https://laravel.com), projetado para permitir:
+**EleictionApp** é uma plataforma web construída com o framework [Laravel](https://laravel.com), voltada para a **realização de enquetes online seguras**, com foco em **integridade de votos, organização administrativa e facilidade de uso**.
 
-- Autenticação distinta para **administradores** e **eleitores**
-- Criação e gerenciamento de enquetes (Admin)
-- Participação anônima e segura dos votos (Voter)
-- Interface amigável e responsiva
+O sistema foi pensado para situações onde é necessário realizar votações entre grupos distintos, como:
+
+- Eleições internas (escolares, acadêmicas, empresariais)
+- Pesquisas de opinião
+- Decisões de assembleias ou reuniões remotas
+
+Com autenticação separada por função, o sistema garante que apenas usuários autorizados possam **criar**, **gerenciar** ou **participar** das enquetes.
 
 ---
 
 ## ⚙️ Funcionalidades
 
-- 🧑‍⚖️ Área de login/admin para gerenciar enquetes
-- 🗳️ Área de votação segura e simples para eleitores
-- 🔒 Registro seguro dos votos
-- 📊 Resultados protegidos contra fraudes
-- 🌐 Layout responsivo com template HTML
+- 🧑‍💼 Login seguro com separação clara entre **Administradores** e **Eleitores**
+- 🗳️ Criação de enquetes com múltiplas opções de voto
+- 🔐 Votação única por eleitor, de forma **anônima e protegida**
+- 📊 Painel de administração com visualização dos resultados em tempo real
+- 🎨 Interface amigável baseada em um template HTML responsivo
+- 🔁 Seeders para simulação e testes de votos
 
 ---
 
 ## 🧰 Tecnologias Utilizadas
 
-- PHP 8+
-- Laravel 12.x
-- MySQL (para ambiente local)
-- Blade Templating
-- HTML5 / CSS3 / JavaScript
+- **PHP 8+**
+- **Laravel 12.x**
+- **MySQL** (pode ser adaptado para SQLite ou PostgreSQL)
+- **Blade Templating Engine**
+- **HTML5, CSS3, JavaScript**
+- **Composer** (gerenciador de dependências PHP)
 
 ---
 
@@ -46,20 +51,28 @@
 # Clone o repositório
 git clone https://github.com/POBU-TOKEN/Eleictionapp.git
 
-# Acesse a pasta
+# Acesse o diretório do projeto
 cd Eleictionapp
 
-# Instale as dependências
+# Instale as dependências PHP
 composer install
 
-# Crie o arquivo .env e configure
+# Copie o arquivo de configuração do ambiente
 cp .env.example .env
 
-# Geração da chave
+# Gere a chave da aplicação
 php artisan key:generate
 
-# Banco de dados (MySQL já incluso)
-touch database/eleiction.sql
+# Configure o banco de dados no arquivo .env (MySQL)
+# Exemplo:
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=eleiction
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# Rode as migrations e seeders
 php artisan migrate --seed
 
 # Inicie o servidor local
