@@ -33,8 +33,8 @@
 ## 🧰 Tecnologias Utilizadas
 
 - PHP 8+
-- Laravel 10+
-- SQLite (para ambiente local)
+- Laravel 12.x
+- MySQL (para ambiente local)
 - Blade Templating
 - HTML5 / CSS3 / JavaScript
 
@@ -58,8 +58,8 @@ cp .env.example .env
 # Geração da chave
 php artisan key:generate
 
-# Banco de dados (SQLite já incluso)
-touch database/eleiction.sqlite
+# Banco de dados (MySQL já incluso)
+touch database/eleiction.sql
 php artisan migrate --seed
 
 # Inicie o servidor local
